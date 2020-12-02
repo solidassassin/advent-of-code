@@ -20,4 +20,4 @@ function part2(x)
     (word[rng |> first] == letter[1]) ⊻ (word[rng |> last] == letter[1])
 end
 
-count(x -> x == true, processed .|> part2) |> println
+count(processed .|> part2) |> println
