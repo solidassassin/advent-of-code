@@ -2,7 +2,7 @@ include("../aoc.jl")
 
 import .AOC
 
-data = split(AOC.get_input() |> strip, "\n\n")
+data = split(AOC.get_input(day=4) |> strip, "\n\n")
 
 # Part 1
 required = ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"]
@@ -21,9 +21,9 @@ end
 byr(x) = parse(Int, x) in 1920:2020
 iyr(x) = parse(Int, x) in 2010:2020
 eyr(x) = parse(Int, x) in 2020:2030
-hcl(x) = !(match(r"#(?:[0-9]|[a-f]){6}\b", x) === nothing)
+hcl(x) = match(r"#(?:[0-9]|[a-f]){6}\b", x) !== nothing
 ecl(x) = x in ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"]
-pid(x) = !(match(r"\b\d{9}\b", x) === nothing)
+pid(x) = match(r"\b\d{9}\b", x) !== nothing
 
 function validate(passport)
     parsed = split.(passport |> split, ':')
